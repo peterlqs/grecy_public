@@ -1,0 +1,20 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1713861982041,
+      "tag": "0000_omniscient_nightmare",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1713862161455,
+      "tag": "0001_redundant_cannonball",
+      "breakpoints": true
+    }
+  ]
+}
