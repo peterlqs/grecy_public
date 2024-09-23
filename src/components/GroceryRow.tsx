@@ -9,7 +9,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Woolworths } from "@/lib/db/migrations/type";
+import { Coles } from "@/lib/db/migrations/type";
 import GroceryRecommendation from "./GroceryRecommendation";
 import { set } from "zod";
 import { max } from "drizzle-orm";
@@ -18,7 +18,7 @@ import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 
 interface GroceryListData {
   department: string;
-  items: Woolworths[];
+  items: Coles[];
 }
 
 interface GroceryData {
@@ -73,7 +73,7 @@ export default function GroceryRow({
         <TabsContent key={departmentIndex} value={department}>
           <ScrollArea>
             <div className="flex flex-nowrap overflow-x-auto gap-2">
-              {items.map((item: Woolworths, id: number) => (
+              {items.map((item: Coles, id: number) => (
                 <GroceryCard item={item} index={id} key={id} />
               ))}
             </div>

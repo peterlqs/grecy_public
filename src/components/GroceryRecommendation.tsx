@@ -1,4 +1,4 @@
-import { Woolworths } from "@/lib/db/migrations/type";
+import { Coles } from "@/lib/db/migrations/type";
 import { CircleHelpIcon, Link } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
@@ -16,7 +16,7 @@ import {
 
 interface GroceryListData {
   department: string;
-  items: Woolworths[];
+  items: Coles[];
 }
 
 interface GroceryData {
@@ -120,7 +120,7 @@ export default function GroceryRecommendation({
                 if (departments.length > 0 && departments[0].items.length > 0) {
                   return (
                     <GroceryCard
-                      index={departments[0].items[0].id}
+                      index={Number(departments[0].items[0].id)} // Convert to number
                       item={departments[0].items[0]}
                       key={ingredientIndex}
                     />

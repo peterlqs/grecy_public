@@ -9,15 +9,15 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Woolworths } from "@/lib/db/migrations/type";
 import GroceryRecommendation from "./GroceryRecommendation";
 import { set } from "zod";
 import { max } from "drizzle-orm";
 import GroceryRow from "./GroceryRow";
+import { Coles } from "@/lib/db/migrations/type";
 
 interface GroceryListData {
   department: string;
-  items: Woolworths[];
+  items: Coles[];
 }
 
 interface GroceryData {
@@ -70,21 +70,20 @@ export default function GroceryList({ groceryData }: GroceryListProps) {
             <div className="">
               <div className="flex flex-row gap-2">
                 <a
-                  // href={`${encodeURIComponent(searchUrl + ingredient)}`}
                   href={`${searchUrl + ingredient}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <h2 className="text-xl font-semibold mb-2 capitalize">
                     {ingredient}
-                  </h2>
-                </a>
+                  </h2>                </a>
               </div>
               {departments.length == 0 && (
                 <div className="">
                   <p className="text-xs font-light">No product found</p>
                 </div>
               )}
+
 
               <GroceryRow
                 departments={departments}

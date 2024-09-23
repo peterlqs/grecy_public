@@ -3,7 +3,6 @@ import { searchWoolworths } from "@/lib/api/woolworths/queries";
 
 export async function POST(request: Request) {
   const { search, store } = await request.json();
-  console.log(search + "-" + store);
   if (store === "coles") {
     const response = await searchColes(search);
     return new Response(JSON.stringify(response), {

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
 import { Button } from "./ui/button";
 import Image from "next/image";
-import { Woolworths } from "@/lib/db/migrations/type";
+import { Coles } from "@/lib/db/migrations/type";
 import LoadingSearchbar from "./LoadingSearchbar";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
@@ -12,12 +12,12 @@ export default function Searchbar({
   setSelectedProducts,
   selectedProducts,
 }: {
-  setSelectedProducts: (product: Woolworths[]) => void;
-  selectedProducts: Woolworths[];
+  setSelectedProducts: (product: Coles[]) => void;
+  selectedProducts: Coles[];
 }) {
   // useState searchResult
   const [store, setStore] = useState("woolworths");
-  const [searchResult, setSearchResult] = useState<Woolworths[] | null>(null);
+  const [searchResult, setSearchResult] = useState<Coles[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [debouncedSearch] = useDebounce(search, 1000);
@@ -62,7 +62,7 @@ export default function Searchbar({
     }
   }, [debouncedSearch]);
 
-  const handleProductClick = (product: Woolworths) => {
+  const handleProductClick = (product: Coles) => {
     // setSelectedProduct(product); // Trigger the callback from ComparePage
     // Add the product to the selected products list
     setSelectedProducts([...selectedProducts, product]);

@@ -8,16 +8,14 @@ export const getColesByName = async (name: string) => {
   const rows = await db
     .select()
     .from(coles)
-    .where(ilike(coles.displayName, searchTerm));
+    .where(ilike(coles.productName, searchTerm));
   if (rows === undefined) return {};
   const f = rows;
-  // return { woolworths: f };
   return f;
 };
 
 // Search for a product by name
 export const searchColes = async (name: string) => {
-  console.log(name);
   // If multiple words then replace whitespace with &
   const searchTerm = `%${name.toLowerCase().replace(/ /g, "&")}%`;
   const rows = await db

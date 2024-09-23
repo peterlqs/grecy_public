@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import Image from "next/image";
-import { Woolworths } from "@/lib/db/migrations/type";
+import { Coles } from "@/lib/db/migrations/type";
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 
-export const columns: ColumnDef<Woolworths>[] = [
+export const columns: ColumnDef<Coles>[] = [
   {
     accessorKey: "imageUrl",
     header: "Image",

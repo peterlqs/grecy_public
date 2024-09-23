@@ -20,7 +20,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { Woolworths } from "@/lib/db/migrations/type";
 import { useToast } from "@/components/ui/use-toast";
 import { Input } from "@/components/ui/input";
 import { Recipe } from "@/lib/schema/schema";
@@ -36,6 +35,7 @@ import { Card } from "@/components/ui/card";
 import { excludeExample, recipeExample } from "@/config/recipeExample";
 import Image from "next/image";
 import { RecipeDialog } from "@/components/RecipeDialog";
+import { Coles } from "@/lib/db/migrations/type";
 
 type Inputs = {
   prompt: string;
@@ -45,7 +45,7 @@ type Inputs = {
 
 interface GroceryListData {
   department: string;
-  items: Woolworths[];
+  items: Coles[];
 }
 
 interface GroceryData {
@@ -88,7 +88,6 @@ export default function LandingPage() {
         throw new Error(`API request failed with status ${response.status}`);
       }
       const responseData = await response.json();
-      console.log("Data from backend:", responseData);
       setGroceryData(responseData);
       // Scroll to groceryData id with offset after wait 200ms
       setTimeout(() => {

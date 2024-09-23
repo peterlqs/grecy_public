@@ -17,7 +17,6 @@ export const getWoolworthsByName = async (name: string) => {
 
 // Search for a product by name
 export const searchWoolworths = async (name: string) => {
-  console.log(name);
   // If multiple words then replace whitespace with &
   const searchTerm = `%${name.toLowerCase().replace(/ /g, "&")}%`;
   const rows = await db

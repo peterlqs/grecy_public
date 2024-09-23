@@ -2,16 +2,18 @@ import { NextResponse } from "next/server";
 import { Groq } from "groq-sdk";
 import { getWoolworthsByName } from "@/lib/api/woolworths/queries";
 import pluralize from "pluralize";
-import { Woolworths } from "@/lib/db/migrations/type";
+import { Coles } from "@/lib/db/migrations/type";
 import { getColesByName } from "@/lib/api/coles/queries";
 // import OpenAI from "openai";
 import { openai } from "@ai-sdk/openai";
 import { OpenAIStream, StreamingTextResponse, generateObject } from "ai";
 import { z } from "zod";
+import { getAiModel } from "@/lib/utils";
+import { CloudCog } from "lucide-react";
 
 interface GroceryListData {
   department: string;
-  items: Woolworths[];
+  items: Coles[];
 }
 
 interface GroceryData {
@@ -22,16 +24,9 @@ interface GroceryData {
   store: string;
 }
 
-const model = openai("gpt-3.5-turbo");
-
-// const openai = new OpenAI({
-//   apiKey: process.env.GROQ_API_KEY || "",
-//   baseURL: process.env.GROQ_API_URL,
-// });
-
 async function extractIngredients(recipe: string) {
   const { object } = await generateObject({
-    model,
+    model: getAiModel(),
     system:
       "You extract ingredient, keep only the important key words. Simplify the ingredient to one item.",
     schema: z.object({
@@ -42,29 +37,6 @@ async function extractIngredients(recipe: string) {
   });
   return object;
 }
-
-// async function extractIngredients(recipe: string) {
-//   const response = await openai.chat.completions.create({
-//     messages: [
-//       {
-//         role: "system",
-//         content:
-//           "You extract ingredient, keep only the important key words. Simplify the ingredient to one item. Result must be in JSON format {'ingredients': [...]}.",
-//       },
-//       {
-//         role: "user",
-//         content: recipe,
-//       },
-//     ],
-//     response_format: { type: "json_object" },
-//     model: "gemma-7b-it",
-//     // model: "llama3-8b-8192",
-//     temperature: 0,
-//     // stream: true,
-//     stream: false,
-//   });
-//   return response;
-// }
 
 export async function POST(request: Request) {
   let { prompt, exclude, store } = await request.json();
@@ -128,8 +100,8 @@ export async function POST(request: Request) {
   Object.keys(groceryListData).forEach((ingredient) => {
     const departments: GroceryListData[] = [];
 
-    groceryListData[ingredient].forEach((item: Woolworths) => {
-      const department = item.department || ""; // Assign an empty string if department is undefined or null
+    groceryListData[ingredient].forEach((item: Coles) => {
+      const department = item.category || ""; // Assign an empty string if department is undefined or null
       const existingDepartmentIndex = departments.findIndex(
         (dep) => dep.department === department
       );

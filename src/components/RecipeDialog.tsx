@@ -52,7 +52,6 @@ export function RecipeDialog({
         throw new Error(`API request failed with status ${response.status}`);
       }
       const responseData = await response.json();
-      console.log("Data from backend (recipe):", responseData);
       // add the recipe to the recipes
       setRecipes((prevRecipes) => [...(prevRecipes || []), responseData]);
     } catch (error) {
