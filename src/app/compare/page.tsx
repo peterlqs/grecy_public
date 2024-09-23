@@ -8,10 +8,10 @@ import Image from "next/image";
 import { LinkIcon } from "lucide-react";
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
-import { Woolworths } from "@/lib/db/migrations/type";
+import { Coles } from "@/lib/db/migrations/type";
 
 export default function ComparePage() {
-  const [selectedProducts, setSelectedProducts] = useState<Woolworths[] | []>(
+  const [selectedProducts, setSelectedProducts] = useState<Coles[] | []>(
     []
   );
 
@@ -27,7 +27,7 @@ export default function ComparePage() {
           </p>
         </div>
         <Searchbar
-          setSelectedProducts={(product: Woolworths[]) =>
+          setSelectedProducts={(product: Coles[]) =>
             setSelectedProducts(product)
           }
           selectedProducts={selectedProducts}
