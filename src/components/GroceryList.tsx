@@ -76,14 +76,14 @@ export default function GroceryList({ groceryData }: GroceryListProps) {
                 >
                   <h2 className="text-xl font-semibold mb-2 capitalize">
                     {ingredient}
-                  </h2>                </a>
+                  </h2>{" "}
+                </a>
               </div>
               {departments.length == 0 && (
                 <div className="">
                   <p className="text-xs font-light">No product found</p>
                 </div>
               )}
-
 
               <GroceryRow
                 departments={departments}

@@ -28,7 +28,7 @@ async function extractIngredients(recipe: string) {
   const { object } = await generateObject({
     model: getAiModel(),
     system:
-      "You extract ingredient, keep only the important key words. Simplify the ingredient to one item.",
+      "Extract a list of all the ingredients from the following text, ensuring that any ingredients with descriptive phrases are simplified to their base ingredient name",
     schema: z.object({
       ingredients: z.array(z.string()),
     }),
@@ -49,6 +49,7 @@ export async function POST(request: Request) {
   listIngredients = listIngredients.map((ingredient: string) => {
     return pluralize.singular(ingredient);
   });
+  console.log(listIngredients);
 
   let allGroceries: { [key: string]: any } = {}; // Add index signature
   for (const ingredient of listIngredients) {
